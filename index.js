@@ -5,3 +5,6 @@ gpio.open(11, "output", function(err) {
         gpio.close(11);
     });
 });
+
+setTimeout(function() {
+}, 5000);
