@@ -2,22 +2,24 @@
     var app = angular.module('hackathon.base', ['hackathon.controllers', 
         'ui.bootstrap', 'ui.router', 'ngAnimate']);
     
-    app.config(['$stateProvider',
-        function($stateProvider) {
+    app.config(['$stateProvider', '$urlRouterProvider',
+        function($stateProvider, $urlRouterProvider) {
+            $urlRouterProvider.when('', '/');
+            
             $stateProvider.state('index', {
-                url: '',
+                url: '/',
                 views: {
                     'baseView': {
-                        templateUrl: '/templates/index-page.html'
+                        templateUrl: '/static/templates/index-page.html'
                     }
                 }
             });
             
             $stateProvider.state('services', {
-                url: 'services',
+                url: '/services',
                 views: {
                     'baseView': {
-                        templateUrl: '/templates/services-page.html'
+                        templateUrl: '/static/templates/services-page.html'
                     }
                 }
             });

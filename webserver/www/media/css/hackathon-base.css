@@ -1,0 +1,22 @@
+html, body {
+    height: 100%;
+}
+
+/**Navbar Stuff **/
+.navbar-active {
+    background-color: #f0f0f0;
+    border-bottom: solid 2px;
+    border-bottom-color: lightblue;
+}
+
+/**Home Page Stuff**/
+
+.home-page {
+    height: 100%;
+}
+
+/**Services Page Stuff**/
+
+.services-page {
+    height: 100%;
+}

@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         <link rel="stylesheet" type="text/css" href="/static/bower_components/bootstrap/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="/static/media/css/hackathon-base.css">
         
         <script src="/static/bower_components/angular/angular.min.js"></script>
         <script src="/static/bower_components/angular-animate/angular-animate.min.js"></script>
@@ -12,6 +13,8 @@
         <script src="/static/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
     </head>
     <body ng-app="hackathon.base">
+        <script src="/static/scripts/angular/app.js"></script>
+        <script src="/static/scripts/angular/hackathon-controllers.js"></script>
         <nav class="navbar navbar-default navbar-static-top">
             <div class="container-fluid">
                 <div class="navbar-header">
@@ -19,16 +22,22 @@
                 </div>
                 <div class="collapse navbar-collapse" id="navbar-tabs">
                     <ul class="nav navbar-nav">
-                        <li ui-sref="index" ui-sref-active="navbar-active">
-                            Home <span class="sr-only">(current)</span>
+                        <li ui-sref-active="navbar-active">
+                            <a href="#" ui-sref="index">
+                                Home <span class="sr-only">(current)</span>
+                            </a>
                         </li>
-                        <li ui-sref="services" ui-sref-active="navbar-active">
-                            Services
+                        <li ui-sref-active="navbar-active">
+                            <a href="#" ui-sref="services">
+                                Services
+                            </a>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
-        <div ui-vew="baseView">TODO write content</div>
+        <div ui-view="baseView">
+            The contents of this div doesn't matter. Cool, huh?
+        </div>
     </body>
 </html>
