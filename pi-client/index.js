@@ -10,17 +10,17 @@ var gpio = require('node-gpio');
 // });
 
 function waitAndDo(times, funct) {
-  if(times < 1) {
-    return;
-  }
+    if (times < 1) {
+        return;
+    }
 
-  setTimeout(function() {
-    funct(times, arguments.slice(2))
-    waitAndDo(times-1, funct, arguments.slice(2));
-  }, 1000);
+    setTimeout(function() {
+        funct(times, arguments.slice(2))
+        waitAndDo(times - 1, funct, arguments.slice(2));
+    }, 1000);
 }
 
-function myFun(times, led, x){
+function myFun(times, led, x) {
     led.dutyCycle = x - times;
 }
 

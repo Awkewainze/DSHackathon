@@ -16,7 +16,5 @@
     "url": "https://github.com/DylanWalseth/DSHackathon/issues"
   },
   "homepage": "https://github.com/DylanWalseth/DSHackathon#readme",
-  "devDependencies": {
-    "pi-gpio": "0.0.8"
-  }
+  "devDependencies": {}
 }
