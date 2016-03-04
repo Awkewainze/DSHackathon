@@ -5,7 +5,6 @@ import json
 from time import sleep
 
 baseurl = '172.25.131.20/weather'
-data = json.load(urllib2.urlopen(baseurl))
 
 
 
@@ -107,7 +106,7 @@ try:
 			light.setColor(colors.light_blue)
 		elif data.temprColor is 'red':
 			light.setColor(colors.red)
-		else
+		else:
 			light.setColor(colors.pink)			
 		sleep(30)
         #rgb = raw_input("rgb: ")
