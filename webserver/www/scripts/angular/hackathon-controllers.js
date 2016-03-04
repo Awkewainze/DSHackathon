@@ -12,22 +12,13 @@
                 'background-color': 'rgb(128, 128, 128)'
             };
             
-            $scope.colors = {
-                'light-blue': [20, 200, 200],
-                green: [20, 200, 20],
-                red: [200, 20, 20]
-            };
+            $scope.colorVal = '';
             
             var updateTempr = function() {
                 var temprString = 'rgb(';
                 if ($scope.weather) {
                     var colorName = $scope.weather.temprColor;
-                    var configData = $scope.colors[colorName];
-                    temprString += String(configData[0]) + ',';
-                    temprString += String(configData[1]) + ',';
-                    temprString += String(configData[2]) + ')';
-
-                    $scope.temprStyle['background-color'] = temprString;
+                    $scope.colorVal = colorName + 'Bg';
                 }
             };
             
@@ -35,13 +26,14 @@
                 if (runUpdate) {
                     HackathonDAL.getCurrentWeather().then(function (success) {
                         $scope.weather = success;
+                        console.log(success);
                         updateTempr();
                     }, function (error) {
                         console.log(error);
                     });
-                    $timeout(updateCycler, 1000);
-                } else {
                     $timeout(updateCycler, 5000);
+                } else {
+                    $timeout(updateCycler, 10000);
                 }
             };
             
