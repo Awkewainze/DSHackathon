@@ -25,7 +25,8 @@ html, body {
 
 .redBg-add, .redBg-remove,
 .greenBg-add, .greenBg-remove,
-.light-blueBg-add, .light-blueBg-remove {
+.light-blueBg-add, .light-blueBg-remove,
+.grayBg-add, .grayBg-remove {
     transition: background-color 900ms linear;
 }
 
@@ -44,7 +45,8 @@ html, body {
     background-color: rgb(50,200,50);
 }
 
-.grayBg {
+.grayBg,
+.grayBg-add.grayBg-add-active {
     background-color: lightgray;
 }
 

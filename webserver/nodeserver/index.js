@@ -22,7 +22,7 @@ var calculateAverage = function () {
 };
 
 app.get('/weather', function (req, res) {
-    var temp = Math.floor((Math.random() * 100) + 1);
+    var temp = Math.floor((Math.random() * 120) + 1);
     recordedTemps.push(temp);
     if (recordedTemps.length > 10) {
         recordedTemps.splice(0, 1);

@@ -17,7 +17,8 @@
             var colors = {
                 red: [200, 50, 50],
                 green: [50, 200, 50],
-                'light-blue': [50, 200, 200]
+                'light-blue': [50, 200, 200],
+                gray: [128, 128, 128]
             };
             
             var runUpdate = true;
@@ -64,6 +65,8 @@
                         $scope.weather = success;
                         updateTempr();
                     }, function (error) {
+                        $scope.weather.temprColor = 'gray';
+                        updateTempr();
                         console.log(error);
                     });
                     $timeout(updateCycler, 1000);
