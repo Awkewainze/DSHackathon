@@ -22,6 +22,7 @@
                 $http.put('/tempConfig', tempS).then(function (success) {
                     
                 }, function (error) {
+                    console.log(error);
                     weatherErrorFlag = true;
                 });
             };
@@ -36,16 +37,22 @@
                             weatherInfo = success.data;
                         }
                     }, function (error) {
+                        console.log(error);
                         weatherErrorFlag = true;
                     });
                     $http.get('/tempconfig').then(function (success) {
-                        
+                        if (success.status === 200) {
+                            tempSettings = success.data;
+                        }
                     }, function (error) {
+                        console.log(error);
                         tempErrorFlag = true;
                     });
             };
             
             var updateCycler = function() {
+                console.log(weatherInfo);
+                console.log(tempSettings);
                 if (runUpdate) {
                     updateInfo();
                     $timeout(updateCycler, 1000);
@@ -54,6 +61,8 @@
                 }
             };
             
+            console.log('Starting update cycler');
+            updateCycler();
             
             return {
                 getCurrentWeather: getCurrentWeather,

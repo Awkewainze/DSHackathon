@@ -2,11 +2,11 @@
     var app = angular.module('hackathon.controllers', ['ui.router',
         'hackathon.services']);
     
-    app.controller('HomeController', ['HackathonDAL', function () {
+    app.controller('HomeController', ['HackathonDAL', function (HackathonDAL) {
             
     }]);
     
-    app.controller('OptionsController', [function () {
+    app.controller('OptionsController', ['HackathonDAL', function (HackathonDAL) {
             
     }]);
 })();

@@ -13,8 +13,16 @@ app.get('/', function (req, res) {
     res.sendFile(path.join(__dirname + "/../www/index.html"));
 });
 
-app.get('/test', function (req, res) {
+app.get('/weather', function (req, res) {
     res.send('Good test');
+});
+
+app.get('/tempConfig', function (req, res) {
+    res.send('Good temp');
+});
+
+app.put('/tempConfig', function (req, res) {
+    res.send('Yeah, sure thing buddy.');
 });
 
 var server = app.listen('8081', function() {
