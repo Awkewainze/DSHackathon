@@ -6,6 +6,7 @@
         function ($timeout, $scope, HackathonDAL) {
             
             var canvas = document.getElementById('canvas');
+            console.log(canvas.width);
             var context = canvas.getContext('2d');
             context.canvas.width = 900;
             context.canvas.height = 400;

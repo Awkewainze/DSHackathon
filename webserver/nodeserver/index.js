@@ -4,8 +4,6 @@ var path = require('path');
 
 var app = express();
 
-console.log(__dirname);
-
 app.use('/static', express.static(__dirname + '/../www'));
 app.use('/index.html', express.static(__dirname + '/../www/index.html'));
 
@@ -13,9 +11,24 @@ app.get('/', function (req, res) {
     res.sendFile(path.join(__dirname + "/../www/index.html"));
 });
 
+var recordedTemps = [];
+
+var calculateAverage = function () {
+    var sum = 0;
+    for (var x in recordedTemps) {
+        sum += recordedTemps[x];
+    }
+    return (sum/recordedTemps.length);
+};
+
 app.get('/weather', function (req, res) {
     var temp = Math.floor((Math.random() * 100) + 1);
-    var tempColor;
+    recordedTemps.push(temp);
+    if (recordedTemps.length > 10) {
+        recordedTemps.splice(0, 1);
+    }
+    
+    var temp = calculateAverage();
     if (temp < 30) {
         tempColor='light-blue';
     } else if (temp < 70) {
