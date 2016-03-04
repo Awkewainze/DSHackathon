@@ -25,7 +25,7 @@ app.get('/weather', function (req, res) {
     }
     
     res.send(JSON.stringify({
-        currentTemp: String(temp)+'F',
+        currentTemp: String(temp),
         temprColor: tempColor
     }));
 });

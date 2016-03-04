@@ -26,7 +26,7 @@ html, body {
 .redBg-add, .redBg-remove,
 .greenBg-add, .greenBg-remove,
 .light-blueBg-add, .light-blueBg-remove {
-    transition: background-color 3000ms linear;
+    transition: background-color 900ms linear;
 }
 
 .redBg,
@@ -46,4 +46,11 @@ html, body {
 
 .grayBg {
     background-color: lightgray;
+}
+
+.temperatureCanvas {
+    border: 1px lightgray solid;
+    width: 900px;
+    height: 400px;
+    background-color: whitesmoke;
 }
