@@ -14,22 +14,44 @@ app.get('/', function (req, res) {
 });
 
 app.get('/weather', function (req, res) {
-    res.send('Good test');
+    res.send(JSON.stringify({
+        currentTemp: '50F',
+        temprColor: 'green'
+    }));
 });
 
 app.get('/tempConfig', function (req, res) {
-    res.send('Good temp');
+    res.send(JSON.stringify({
+        temperatureColors: {
+            cold: 'light-blue',
+            warm: 'green',
+            hot: 'red'
+        },
+        temperatureDefs: {
+            'light-blue': [20, 200, 200],
+            green: [20, 200, 20],
+            red: [200, 20, 20]
+        }
+    }));
 });
 
 app.put('/tempConfig', function (req, res) {
-    res.send('Yeah, sure thing buddy.');
+    res.send(JSON.stringify({
+        temperatureColors: {
+            cold: [0, 0, 255],
+            warm: [0, 255, 0],
+            hot: [255, 0, 0]
+        },
+        temperatureDefs: {
+            
+        }
+    }));
 });
 
-var server = app.listen('8081', function() {
+var server = app.listen('80', function() {
     var host = server.address().address;
     var port = server.address().port;
     
-    console.log('New request to http://%s:%s', host, port);
+    console.log('Running server on http://%s:%s', host, port);
+    console.log('Server directory: %s', __dirname);
 });
-
-console.log("Node server on %s", __dirname);
