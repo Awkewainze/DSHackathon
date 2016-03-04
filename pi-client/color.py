@@ -1,5 +1,13 @@
 import RPi.GPIO as GPIO
+import web
+import urllib2
+import json
 from time import sleep
+
+baseurl = '172.25.131.20/weather'
+data = json.load(urllib2.urlopen(baseurl))
+
+
 
 class Color:
     def __init__(self, r, g, b):
@@ -92,10 +100,20 @@ colors = Colors()
 try:
     light.setColor(colors.off, True)
     while(True):
-        rgb = raw_input("rgb: ")
-        if rgb is "q":
-            break
-        _rgb = rgb.split()
-        light.setColor(Color(float(_rgb[0]), float(_rgb[1]), float(_rgb[2])))
+		data = json.load(urllib2.urlopen(baseurl))
+		if data.temprColor is 'green':
+			light.setColor(colors.green)
+		elif data.temprColor is 'light-blue':
+			light.setColor(colors.light_blue)
+		elif data.temprColor is 'red':
+			light.setColor(colors.red)
+		else
+			light.setColor(colors.pink)			
+		sleep(30)
+        #rgb = raw_input("rgb: ")
+       # if rgb is "q":
+      #      break
+     #   _rgb = rgb.split()
+    #    light.setColor(Color(float(_rgb[0]), float(_rgb[1]), float(_rgb[2])))
 finally:
     light.cleanup()
