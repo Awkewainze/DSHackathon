@@ -1,3 +1,6 @@
-<div class="container home-page" ng-style="temprStyle">
-    <h1>This is a test</h1>
+<div class="container home-page" ng-class="colorVal">
+    <h1>Current random temperature: {{weather.currentTemp}}</h1>
+    <h2>Displaying color: {{weather.temprColor}}</h2>
+    
+    <canvas id="canvas" class="temperatureCanvas"></canvas>
 </div>

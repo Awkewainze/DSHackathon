@@ -14,9 +14,19 @@ app.get('/', function (req, res) {
 });
 
 app.get('/weather', function (req, res) {
+    var temp = Math.floor((Math.random() * 100) + 1);
+    var tempColor;
+    if (temp < 30) {
+        tempColor='light-blue';
+    } else if (temp < 70) {
+        tempColor='green';
+    } else {
+        tempColor='red';
+    }
+    
     res.send(JSON.stringify({
-        currentTemp: '50F',
-        temprColor: 'green'
+        currentTemp: String(temp),
+        temprColor: tempColor
     }));
 });
 

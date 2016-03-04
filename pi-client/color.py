@@ -6,8 +6,6 @@ from time import sleep
 
 baseurl = 'http://172.25.131.20/weather'
 
-
-
 class Color:
     def __init__(self, r, g, b):
         self.r = float(r)
@@ -94,10 +92,6 @@ try:
         else:
             light.setColor(colors.pink)
         sleep(3.0)
-        #rgb = raw_input("rgb: ")
-       # if rgb is "q":
-      #      break
-     #   _rgb = rgb.split()
-    #    light.setColor(Color(float(_rgb[0]), float(_rgb[1]), float(_rgb[2])))
+
 finally:
     light.cleanup()
