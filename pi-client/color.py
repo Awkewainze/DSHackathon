@@ -4,9 +4,7 @@ import urllib2
 import json
 from time import sleep
 
-baseurl = '172.25.131.20/weather'
-
-
+baseurl = 'http://172.25.131.20/weather'
 
 class Color:
     def __init__(self, r, g, b):
@@ -48,10 +46,9 @@ class Light:
         self.pwm_green.start(0)
         self.pwm_blue.start(0)
 
-    def setColor(self, color, hard=False):
+    def setColor(self, color, hard=False, transitionTime=3.0):
         def rgbToDuty(value):
             value = ((255.0-value)/255.0)*100.0
-            # value = value * 1.2
             if value > 100.0:
                 value = 100.0
             return value
@@ -63,33 +60,18 @@ class Light:
             self.pwm_green.ChangeDutyCycle(rgbToDuty(color.g))
             self.pwm_blue.ChangeDutyCycle(rgbToDuty(color.b))
         else:
-            print("soft")
-            def weightedAverage(value1, value2, weightOf1):
-                return (weightOf1*value1) + ((1-weightOf1)*value2)
             colorCurrent = Color(self.r, self.g, self.b)
-            redSet = False
-            greenSet = False
-            blueSet = False
-            while(not redSet or not greenSet or not blueSet):
-                if(abs(colorCurrent.r - color.r) < 1.0):
-                    redSet = True
-                    colorCurrent.r = color.r
-                else:
-                    colorCurrent.r = weightedAverage(colorCurrent.r, color.r, .92)
-
-                if(abs(colorCurrent.g - color.g) < 1.0):
-                    greenSet = True
-                    colorCurrent.g = color.g
-                else:
-                    colorCurrent.g = weightedAverage(colorCurrent.g, color.g, .92)
-
-                if(abs(colorCurrent.b - color.b) < 1.0):
-                    blueSet = True
-                    colorCurrent.b = color.b
-                else:
-                    colorCurrent.b = weightedAverage(colorCurrent.b, color.b, .92)
+            increments = 1000.0
+            incrementRed = (color.r - colorCurrent.r) / increments
+            incrementGreen = (color.g - colorCurrent.g) / increments
+            incrementBlue = (color.b - colorCurrent.b) / increments
+            for x in range(int(increments)):
+                colorCurrent.r =  colorCurrent.r + incrementRed
+                colorCurrent.g = colorCurrent.g + incrementGreen
+                colorCurrent.b = colorCurrent.b + incrementBlue
                 self.setColor(colorCurrent, hard=True)
-                sleep(.3)
+                sleep(transitionTime/increments)
+            self.setColor(color, hard=True)
 
     def cleanup(self):
         GPIO.cleanup()
@@ -99,20 +81,17 @@ colors = Colors()
 try:
     light.setColor(colors.off, True)
     while(True):
-		data = json.load(urllib2.urlopen(baseurl))
-		if data.temprColor is 'green':
-			light.setColor(colors.green)
-		elif data.temprColor is 'light-blue':
-			light.setColor(colors.light_blue)
-		elif data.temprColor is 'red':
-			light.setColor(colors.red)
-		else:
-			light.setColor(colors.pink)			
-		sleep(30)
-        #rgb = raw_input("rgb: ")
-       # if rgb is "q":
-      #      break
-     #   _rgb = rgb.split()
-    #    light.setColor(Color(float(_rgb[0]), float(_rgb[1]), float(_rgb[2])))
+        data = json.load(urllib2.urlopen(baseurl))
+        print(data["temprColor"])
+        if data["temprColor"] == 'green':
+            light.setColor(colors.green)
+        elif data["temprColor"] == 'light-blue':
+            light.setColor(colors.light_blue)
+        elif data["temprColor"] == 'red':
+            light.setColor(colors.red)
+        else:
+            light.setColor(colors.pink)
+        sleep(3.0)
+
 finally:
     light.cleanup()
