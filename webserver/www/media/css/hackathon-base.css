@@ -20,3 +20,30 @@ html, body {
 .services-page {
     height: 100%;
 }
+
+/**Other**/
+
+.redBg-add, .redBg-remove,
+.greenBg-add, .greenBg-remove,
+.light-blueBg-add, .light-blueBg-remove {
+    transition: background-color 3000ms linear;
+}
+
+.redBg,
+.redBg-add.redBg-add-active{
+    background-color: rgb(200, 50, 50);
+}
+
+.light-blueBg,
+.light-blueBg-add.light-blueBg-add-active {
+    background-color: rgb(50, 200, 200);
+}
+
+.greenBg,
+.greenBg-add.greenBg-add-active {
+    background-color: rgb(50,200,50);
+}
+
+.grayBg {
+    background-color: lightgray;
+}

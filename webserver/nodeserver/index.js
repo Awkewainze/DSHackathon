@@ -14,7 +14,7 @@ app.get('/', function (req, res) {
 });
 
 app.get('/weather', function (req, res) {
-    var temp = Math.floor((Math.random * 100) + 1);
+    var temp = Math.floor((Math.random() * 100) + 1);
     var tempColor;
     if (temp < 30) {
         tempColor='light-blue';
